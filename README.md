@@ -1,0 +1,2 @@
+# scheckinapp
+student check-in 
