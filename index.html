@@ -58,7 +58,7 @@
 
       <form onsubmit="submitForm(); return false;">
         <label for="studentId">Student ID</label>
-        <input id="studentId" inputmode="numeric" pattern="[0-9]*" placeholder="e.g. 13579644" required autofocus />
+        <input id="studentId" inputmode="numeric" pattern="[0-9]*" placeholder="e.g. 13579666" required autofocus />
 
         <label for="name">Full Name</label>
         <input id="name" placeholder="e.g. Wilson So" required />
@@ -88,7 +88,8 @@
 
 <script>
 /* CONFIG */
-const FLOW_URL = "https://default9d8868a5c1dc4786aff1f7d04646be.9a.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9ed041ac7ca143a0b262334d9dfc13d5/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=il-cX-qHDZbGSxE2OnN56BK2jdJIgxWXFIStUm65G6g";const ID_REGEX = /^(?:[Ss][0-9]{6,}|[0-9]{6,10})$/;
+const FLOW_URL = "https://default9d8868a5c1dc4786aff1f7d04646be.9a.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/9ed041ac7ca143a0b262334d9dfc13d5/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=il-cX-qHDZbGSxE2OnN56BK2jdJIgxWXFIStUm65G6g"
+;const ID_REGEX = /^[0-9]{8,}$/;
 
 /* All available courses */
 const ALL_COURSES = [
@@ -283,9 +284,6 @@ function startGPS(){
 startGPS();
 
 /* Once-per-day and submit */
-function todayKey(){return new Date().toISOString().slice(0,10);}
-function alreadyCheckedToday(id){return!!localStorage.getItem(`checkin:${id.toUpperCase()}:${todayKey()}`);}
-function stampCheckedToday(id){localStorage.setItem(`checkin:${id.toUpperCase()}:${todayKey()}`,'1');}
 function setMsg(text,kind){elMsg.className='msg '+(kind||'ok');elMsg.textContent=text;elMsg.style.display='block';}
 async function submitForm(){
   const id=(elId.value||'').trim(),name=(elName.value||'').trim(),trainer=elTrainer.value,course=elCourse.value;
