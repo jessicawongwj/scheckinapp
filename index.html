@@ -124,7 +124,7 @@
                   <li>Intervention support meeting</li>
                   <li>Risk of course cancellation</li>
                 </ul>
-                If you are unable to attend, please notify your trainer or contact <a href="/cdn-cgi/l/email-protection#1c6f6869787972686f796e6a757f796f5c7978697f7d6e7932797869327d69" style="color:var(--brand);"><span class="__cf_email__" data-cfemail="2556515041404b51564057534c46405665404150464457400b4041500b4450">[email&#160;protected]</span></a> in advance.
+                If you are unable to attend, please notify your trainer or contact <a href="mailto:studentservices@educare.edu.au" style="color:var(--brand);">studentservices@educare.edu.au</a> in advance.
               </div>
             </details>
 
@@ -133,7 +133,7 @@
               <div>
                 As an international student, your attendance is monitored under the <b>Education Services for Overseas Students (ESOS) Act 2000</b> and the <b>National Code of Practice</b>.<br><br>
                 <b>Your attendance is directly linked to your student visa conditions.</b> Consistently low attendance may be reported to the Department of Home Affairs (<b>DHA</b>), which could affect your visa status.<br><br>
-                For support or concerns, please contact: <a href="/cdn-cgi/l/email-protection#95e6e1e0f1f0fbe1e6f0e7e3fcf6f0e6d5f0f1e0f6f4e7f0bbf0f1e0bbf4e0" style="color:var(--brand);"><span class="__cf_email__" data-cfemail="b7c4c3c2d3d2d9c3c4d2c5c1ded4d2c4f7d2d3c2d4d6c5d299d2d3c299d6c2">[email&#160;protected]</span></a>
+                For support or concerns, please contact: <a href="mailto:studentservices@educare.edu.au" style="color:var(--brand);">studentservices@educare.edu.au</a>
               </div>
             </details>
           </div>
@@ -159,7 +159,7 @@
           <summary style="color:#2563eb;">How to find my Student ID?</summary>
           <div style="padding-top:10px; line-height:1.6; color:#444;">
             Your <b>8-digit Student ID</b> can be found on your <b>Offer Letter</b> sent to you by Educare College.<br><br>
-            If you can't locate your Offer Letter, please email <a href="/cdn-cgi/l/email-protection#81f2f5f4e5e4eff5f2e4f3f7e8e2e4f2c1e4e5f4e2e0f3e4afe4e5f4afe0f4" style="color:var(--brand); font-weight:700;"><span class="__cf_email__" data-cfemail="bccfc8c9d8d9d2c8cfd9cecad5dfd9cffcd9d8c9dfddced992d9d8c992ddc9">[email&#160;protected]</span></a>
+            If you can't locate your Offer Letter, please email <a href="mailto:studentservices@educare.edu.au" style="color:var(--brand); font-weight:700;">studentservices@educare.edu.au</a>
           </div>
         </details>
 
@@ -184,7 +184,7 @@
     </div>
   </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const TRAINER_COURSES = {
   "Alessandro Tavian": ["CPC30220 Certificate III in Carpentry"],
   "Colleen Schmidt": ["CHC33021 Certificate III in Individual Support"],
@@ -201,7 +201,8 @@ const CHECKIN_URL = "https://default9d8868a5c1dc4786aff1f7d04646be.9a.environmen
 const CHECKOUT_URL = "https://default9d8868a5c1dc4786aff1f7d04646be.9a.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/bcdcf6fb75f54438930f28c8e643b6a3/triggers/manual/paths/invoke?api-version=1";
 
 const campuses = [
-  { name:"Brisbane CBD", lat:-27.4689, lng:153.0234, radius:0.2 },
+  { name:"Brisbane CBD — 316 Adelaide St", lat:-27.46509, lng:153.02871, radius:0.15 },
+  { name:"Brisbane CBD — 102 Adelaide St", lat:-27.46835, lng:153.02490, radius:0.15 },
   { name:"Southport GC", lat:-27.97258, lng:153.41584, radius:0.15 },
   { name:"Woolloongabba Studio", lat:-27.49135, lng:153.04249, radius:0.15 }
 ];
@@ -351,4 +352,19 @@ function init() {
       activeSession = session;
       document.getElementById('sessionInfo').classList.add('active');
       document.getElementById('sessionCampus').textContent = activeSession.campus;
-      startTime
+      startTimer();
+    }
+  }
+  const r_id = localStorage.getItem('r_id'), r_name = localStorage.getItem('r_name'), r_trainer = localStorage.getItem('r_trainer'), r_course = localStorage.getItem('r_course');
+  if(r_id) elId.value = r_id; if(r_name) elName.value = r_name;
+  if(r_trainer) {
+    elTrainer.value = r_trainer; elTrainer.dispatchEvent(new Event('change'));
+    setTimeout(() => { if(r_course) elCourse.value = r_course; updateButtonStates(); }, 150);
+  }
+}
+
+init();
+navigator.geolocation.watchPosition(onGPSSuccess, onGPSError, {enableHighAccuracy:true});
+</script>
+</body>
+</html>
